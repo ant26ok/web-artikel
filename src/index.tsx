@@ -139,5 +139,6 @@ const PORT = Number(process.env.PORT || 3002);
 
 export default {
   port: PORT,
+  hostname: '0.0.0.0',
   fetch: app.fetch,
 };
