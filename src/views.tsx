@@ -26,8 +26,6 @@ export const Layout: FC<{ title?: string; children: any; isDetail?: boolean; act
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
         <meta name="theme-color" content="#4f46e5" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <title>{title}</title>
         
         <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio"></script>
@@ -64,28 +62,28 @@ export const Layout: FC<{ title?: string; children: any; isDetail?: boolean; act
           .no-scrollbar::-webkit-scrollbar { display: none; }
           .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
           .safe-pb {
-            padding-bottom: calc(env(safe-area-inset-bottom, 12px) + 8px);
+            padding-bottom: calc(env(safe-area-inset-bottom, 8px) + 4px);
           }
         `}</style>
       </head>
-      <body className="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+      <body className="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white text-xs sm:text-sm">
         {isDetail && (
-          <div id="read-progress" className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-violet-600 z-50 transition-all duration-150 w-0"></div>
+          <div id="read-progress" className="fixed top-0 left-0 h-0.5 bg-indigo-600 z-50 transition-all duration-150 w-0"></div>
         )}
 
-        {/* Top Header */}
+        {/* Compact Header */}
         <header className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40 shadow-xs">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-            <a href="/" className="flex items-center space-x-2.5 active:scale-95 transition">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white font-extrabold text-sm sm:text-base shadow-sm shadow-indigo-600/30">
+          <div className="max-w-4xl mx-auto px-3 sm:px-6 h-12 sm:h-14 flex items-center justify-between">
+            <a href="/" className="flex items-center space-x-2 active:scale-95 transition">
+              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-xs">
                 KT
               </div>
-              <div>
-                <span className="font-extrabold text-base tracking-tight text-slate-900 block leading-tight">
+              <div className="flex items-baseline space-x-1.5">
+                <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 leading-none">
                   KabarTekno
                 </span>
-                <span className="text-[10px] text-slate-500 font-medium block -mt-0.5 sm:mt-0">
-                  IT Rumah Sakit & Koding
+                <span className="hidden xs:inline text-[9px] text-slate-400 font-medium">
+                  IT & Koding
                 </span>
               </div>
             </a>
@@ -94,26 +92,24 @@ export const Layout: FC<{ title?: string; children: any; isDetail?: boolean; act
             <nav className="hidden sm:flex items-center space-x-2">
               <a
                 href="/"
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${activeTab === 'home' ? 'text-indigo-600 bg-indigo-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition ${activeTab === 'home' ? 'text-indigo-600 bg-indigo-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
               >
                 Beranda
               </a>
               <a
                 href="/new"
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white shadow-sm shadow-indigo-600/25 transition flex items-center space-x-1.5"
+                className="px-3 py-1 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white transition flex items-center space-x-1 shadow-xs"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
-                </svg>
+                <span>+</span>
                 <span>Tulis Artikel</span>
               </a>
             </nav>
 
-            {/* Mobile Header Quick Actions */}
-            <div className="sm:hidden flex items-center space-x-2">
+            {/* Mobile Header Quick Action */}
+            <div className="sm:hidden flex items-center space-x-1.5">
               <a
                 href="/new"
-                className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-bold flex items-center space-x-1 active:scale-95 transition shadow-xs"
+                className="px-2.5 py-1 rounded-lg bg-indigo-600 text-white text-[11px] font-bold flex items-center space-x-1 active:scale-95 transition"
               >
                 <span>+</span>
                 <span>Tulis</span>
@@ -122,54 +118,52 @@ export const Layout: FC<{ title?: string; children: any; isDetail?: boolean; act
           </div>
         </header>
 
-        {/* Main Content Area: pb-28 on mobile ensures bottom nav never covers content */}
-        <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-4 sm:py-8 pb-28 sm:pb-12">
+        {/* Main Content Area: Compact padding */}
+        <main className="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 py-3 sm:py-6 pb-20 sm:pb-10">
           {children}
         </main>
 
         {/* Desktop Footer */}
-        <footer className="hidden sm:block bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-          <div className="max-w-5xl mx-auto px-4 flex flex-row items-center justify-between">
-            <span>© 2026 KabarTekno — Bun + Hono + SQLite</span>
-            <div className="flex space-x-4">
+        <footer className="hidden sm:block bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
+          <div className="max-w-4xl mx-auto px-4 flex flex-row items-center justify-between">
+            <span>KabarTekno — Bun + Hono + SQLite</span>
+            <div className="flex space-x-3 text-[11px]">
               <a href="/api/articles" className="hover:text-indigo-600 transition">REST API</a>
               <a href="https://github.com/ant26ok/web-artikel" target="_blank" className="hover:text-indigo-600 transition">GitHub</a>
             </div>
           </div>
         </footer>
 
-        {/* Mobile App-Style Bottom Navigation Bar */}
-        <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-slate-200/90 px-4 py-2 flex items-center justify-around z-40 shadow-lg safe-pb">
+        {/* Compact Mobile Bottom Navigation */}
+        <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-1.5 flex items-center justify-around z-40 safe-pb shadow-sm">
           <a
             href="/"
-            className={`flex flex-col items-center py-1 px-3 rounded-xl transition ${activeTab === 'home' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-medium'}`}
+            className={`flex flex-col items-center py-1 px-3 rounded-lg transition ${activeTab === 'home' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-medium'}`}
           >
-            <svg className="w-5 h-5 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
-            <span className="text-[10px]">Beranda</span>
+            <span className="text-[9px]">Beranda</span>
           </a>
 
           <a
             href="/new"
-            className={`flex flex-col items-center py-1 px-3 rounded-xl transition ${activeTab === 'new' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-medium'}`}
+            className={`flex flex-col items-center py-1 px-3 rounded-lg transition ${activeTab === 'new' ? 'text-indigo-600 font-bold' : 'text-slate-500 font-medium'}`}
           >
-            <div className="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center -mt-5 shadow-md shadow-indigo-600/30 active:scale-90 transition">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
-              </svg>
-            </div>
-            <span className="text-[10px] text-indigo-600 font-bold mt-0.5">Tulis</span>
+            <svg className="w-4 h-4 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            <span className="text-[9px]">Tulis</span>
           </a>
 
           <a
             href="/api/articles"
-            className="flex flex-col items-center py-1 px-3 rounded-xl text-slate-500 font-medium transition"
+            className="flex flex-col items-center py-1 px-3 rounded-lg text-slate-500 font-medium transition"
           >
-            <svg className="w-5 h-5 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
-            <span className="text-[10px]">API</span>
+            <span className="text-[9px]">API</span>
           </a>
         </nav>
 
@@ -200,63 +194,61 @@ export const ArticleList: FC<{
 
   return (
     <Layout title="KabarTekno — Catatan & Artikel IT" activeTab="home">
-      {/* Mobile-Friendly Hero Section */}
-      <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-5 sm:p-8 mb-5 shadow-md shadow-slate-900/10">
-        <div className="relative z-10">
-          <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[11px] font-semibold mb-2.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Hospital IT & Software Engineering</span>
-          </div>
-
-          <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight leading-snug text-white mb-2">
-            Catatan Teknologi & Sistem Rumah Sakit
-          </h1>
-          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4 max-w-xl">
-            Solusi integrasi data rekam medis, otomasi n8n, SNOMED CT, dan arsitektur backend.
-          </p>
-
-          {/* Search Input (16px font prevents iOS auto-zoom) */}
-          <form method="GET" action="/" className="relative flex items-center">
-            <div className="absolute left-3 text-slate-400 pointer-events-none">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <input
-              type="text"
-              name="q"
-              placeholder="Cari artikel (misal: SIMRS, SNOMED)..."
-              value={searchQuery}
-              className="w-full pl-9 pr-20 py-2.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white/15 transition"
-            />
-            {selectedCategory !== 'Semua' && (
-              <input type="hidden" name="cat" value={selectedCategory} />
-            )}
-            <button
-              type="submit"
-              className="absolute right-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white rounded-lg text-xs font-bold transition shadow-xs"
-            >
-              Cari
-            </button>
-          </form>
+      {/* Compact Hero Section */}
+      <section className="rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-3.5 sm:p-5 mb-3.5 shadow-sm">
+        <div className="flex items-center gap-1.5 mb-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span className="text-indigo-300 text-[10px] font-semibold">IT Rumah Sakit & Koding</span>
         </div>
+
+        <h1 className="text-sm sm:text-lg font-bold text-white mb-1 leading-snug">
+          Catatan & Dokumentasi Teknis
+        </h1>
+        <p className="text-slate-300 text-[11px] leading-relaxed mb-3 max-w-lg">
+          Integrasi rekam medis, SNOMED CT, otomasi alur kerja, dan arsitektur backend.
+        </p>
+
+        {/* Compact Search Input */}
+        <form method="GET" action="/" className="relative flex items-center">
+          <div className="absolute left-2.5 text-slate-400 pointer-events-none">
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            name="q"
+            placeholder="Cari artikel (SIMRS, SNOMED)..."
+            value={searchQuery}
+            className="w-full pl-8 pr-16 py-1.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:bg-white/15 transition"
+          />
+          {selectedCategory !== 'Semua' && (
+            <input type="hidden" name="cat" value={selectedCategory} />
+          )}
+          <button
+            type="submit"
+            className="absolute right-1 px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white rounded-md text-[10px] font-bold transition shadow-xs"
+          >
+            Cari
+          </button>
+        </form>
       </section>
 
-      {/* Horizontal Scrollable Category Filter for Mobile */}
-      <section className="mb-5">
-        <div className="flex items-center justify-between mb-2 px-1">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Pilih Topik</span>
+      {/* Horizontal Scrollable Category Filter */}
+      <section className="mb-3">
+        <div className="flex items-center justify-between mb-1.5 px-0.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Kategori</span>
           {(searchQuery || selectedCategory !== 'Semua') && (
             <a
               href="/"
-              className="text-[11px] text-rose-500 hover:text-rose-600 font-bold flex items-center gap-1 transition"
+              className="text-[10px] text-rose-500 hover:text-rose-600 font-bold transition"
             >
               ✕ Reset
             </a>
           )}
         </div>
 
-        <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
           {categories.map((c) => {
             const isSelected = (c === selectedCategory) || (!selectedCategory && c === 'Semua');
             const link = c === 'Semua'
@@ -267,9 +259,9 @@ export const ArticleList: FC<{
               <a
                 key={c}
                 href={link}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-150 border shrink-0 active:scale-95 ${
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap transition-all duration-150 border shrink-0 active:scale-95 ${
                   isSelected
-                    ? 'bg-slate-900 border-slate-900 text-white shadow-xs'
+                    ? 'bg-slate-900 border-slate-900 text-white'
                     : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'
                 }`}
               >
@@ -280,83 +272,83 @@ export const ArticleList: FC<{
         </div>
       </section>
 
-      {/* Featured / Latest Article (Hero Card) */}
+      {/* Featured / Latest Article (Compact Card) */}
       {!searchQuery && selectedCategory === 'Semua' && featured && (
-        <section className="mb-5">
+        <section className="mb-3.5">
           <a
             href={`/article/${featured.slug}`}
-            className="block bg-gradient-to-br from-indigo-50/90 via-purple-50/50 to-white rounded-2xl p-4 sm:p-6 border border-indigo-100/90 shadow-xs hover:shadow-md hover:border-indigo-300 transition active:scale-[0.99] group"
+            className="block bg-indigo-50/70 hover:bg-indigo-50/90 rounded-xl p-3 sm:p-4 border border-indigo-100/90 shadow-xs transition active:scale-[0.99] group"
           >
-            <div className="flex items-center gap-2 mb-2">
-              <span className="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-indigo-600 text-white shadow-xs">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-indigo-600 text-white">
                 Terbaru
               </span>
-              <span className={`px-2 py-0.5 rounded-md text-[11px] font-bold border ${getCategoryColor(featured.category)}`}>
+              <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${getCategoryColor(featured.category)}`}>
                 {featured.category}
               </span>
-              <span className="text-[11px] text-slate-400 ml-auto font-medium">
+              <span className="text-[10px] text-slate-400 ml-auto">
                 {featured.read_time} mnt
               </span>
             </div>
 
-            <h2 className="text-base sm:text-xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition leading-snug mb-2">
+            <h2 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition leading-snug mb-1">
               {featured.title}
             </h2>
 
-            <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 sm:line-clamp-3 leading-relaxed mb-3">
+            <p className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed mb-2">
               {featured.excerpt}
             </p>
 
-            <div className="flex items-center justify-between text-xs pt-3 border-t border-indigo-100/70 text-slate-500 font-medium">
-              <span>Oleh <strong className="text-slate-800">{featured.author}</strong></span>
-              <span className="text-indigo-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition">
-                Baca Artikel →
+            <div className="flex items-center justify-between text-[10px] pt-2 border-t border-indigo-100 text-slate-500">
+              <span>{featured.author}</span>
+              <span className="text-indigo-600 font-bold group-hover:translate-x-0.5 transition">
+                Baca →
               </span>
             </div>
           </a>
         </section>
       )}
 
-      {/* Articles List / Grid */}
+      {/* Articles List */}
       <section>
-        <div className="flex items-center justify-between mb-3 px-1">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-            {searchQuery ? `Hasil Pencarian` : 'Daftar Artikel'}
-          </h2>
-          <span className="text-[11px] text-slate-400 font-medium">
-            {articles.length} tulisan
+        <div className="flex items-center justify-between mb-2 px-0.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            {searchQuery ? `Hasil: "${searchQuery}"` : 'Semua Tulisan'}
+          </span>
+          <span className="text-[10px] text-slate-400">
+            {articles.length} artikel
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
           {(!searchQuery && selectedCategory === 'Semua' ? regularArticles : articles).map((item) => (
             <a
               key={item.id}
               href={`/article/${item.slug}`}
-              className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-xs hover:shadow-md hover:border-indigo-300 transition active:scale-[0.99] flex flex-col justify-between group"
+              className="bg-white border border-slate-200/80 rounded-xl p-3 sm:p-3.5 shadow-xs hover:border-indigo-300 transition active:scale-[0.99] flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between text-xs mb-2">
-                  <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${getCategoryColor(item.category)}`}>
+                <div className="flex items-center justify-between text-[10px] mb-1.5">
+                  <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${getCategoryColor(item.category)}`}>
                     {item.category}
                   </span>
-                  <span className="text-slate-400 text-[11px] font-medium">
-                    {item.read_time} mnt baca
+                  <span className="text-slate-400 text-[10px]">
+                    {item.read_time} mnt
                   </span>
                 </div>
 
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-indigo-600 transition leading-snug mb-2">
+                <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition leading-snug mb-1">
                   {item.title}
                 </h3>
 
-                <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
+                <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed mb-2">
                   {item.excerpt}
                 </p>
               </div>
 
-              <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                <span className="font-semibold text-slate-700">{item.author}</span>
-                <span className="font-bold text-indigo-600 group-hover:translate-x-0.5 transition flex items-center gap-0.5">
+              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                <span className="font-medium text-slate-600">{item.author}</span>
+                <span className="font-bold text-indigo-600 group-hover:translate-x-0.5 transition">
                   Baca →
                 </span>
               </div>
@@ -364,14 +356,13 @@ export const ArticleList: FC<{
           ))}
 
           {articles.length === 0 && (
-            <div className="col-span-full py-14 text-center bg-white rounded-2xl border border-slate-200">
-              <p className="text-slate-600 font-bold text-sm">Tidak ada artikel yang cocok</p>
-              <p className="text-xs text-slate-400 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
+            <div className="col-span-full py-10 text-center bg-white rounded-xl border border-slate-200">
+              <p className="text-slate-600 font-bold text-xs">Tidak ada artikel yang cocok</p>
               <a
                 href="/"
-                className="mt-3.5 inline-block px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold"
+                className="mt-2 inline-block px-3 py-1 bg-indigo-600 text-white rounded-lg text-[10px] font-bold"
               >
-                Lihat Semua Artikel
+                Lihat Semua
               </a>
             </div>
           )}
@@ -387,47 +378,44 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
   return (
     <Layout title={`${article.title} — KabarTekno`} isDetail={true} activeTab="detail">
       <div className="max-w-2xl mx-auto">
-        {/* Top Back Button with comfortable 44px touch target */}
-        <div className="mb-3">
+        {/* Top Back Button */}
+        <div className="mb-2">
           <a
             href="/"
-            className="inline-flex items-center text-xs font-bold text-slate-600 hover:text-indigo-600 transition py-2 pr-3 gap-1.5 active:scale-95"
+            className="inline-flex items-center text-xs font-semibold text-slate-600 hover:text-indigo-600 transition py-1 gap-1 active:scale-95"
           >
-            <span className="text-base leading-none">←</span>
-            <span>Kembali ke Beranda</span>
+            <span>← Kembali</span>
           </a>
         </div>
 
-        {/* Article Header Card */}
-        <header className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-xs mb-4 sm:mb-6">
-          <div className="flex items-center gap-2 mb-2.5">
-            <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${getCategoryColor(article.category)}`}>
+        {/* Compact Article Header Card */}
+        <header className="bg-white rounded-xl p-3.5 sm:p-5 border border-slate-200 shadow-xs mb-3 sm:mb-4">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${getCategoryColor(article.category)}`}>
               {article.category}
             </span>
-            <span className="text-[11px] text-slate-400">•</span>
-            <span className="text-[11px] text-slate-500 font-medium">{article.read_time} menit membaca</span>
+            <span className="text-[10px] text-slate-400">•</span>
+            <span className="text-[10px] text-slate-400">{article.read_time} mnt baca</span>
           </div>
 
-          <h1 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug sm:leading-tight mb-3">
+          <h1 className="text-base sm:text-xl font-bold text-slate-900 tracking-tight leading-snug mb-2.5">
             {article.title}
           </h1>
 
-          <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-8 h-8 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-xs">
+          <div className="flex items-center justify-between pt-2.5 border-t border-slate-100 text-[11px]">
+            <div className="flex items-center space-x-1.5">
+              <div className="w-5 h-5 rounded-md bg-slate-900 text-white font-bold flex items-center justify-center text-[9px]">
                 {article.author.charAt(0)}
               </div>
-              <div>
-                <span className="font-bold text-xs text-slate-900 block leading-tight">{article.author}</span>
-                <span className="text-[10px] text-slate-400">{article.created_at}</span>
-              </div>
+              <span className="font-semibold text-slate-800">{article.author}</span>
+              <span className="text-slate-400">• {article.created_at}</span>
             </div>
 
-            {/* Mobile Share & Delete Buttons */}
+            {/* Compact Action Buttons */}
             <div className="flex items-center space-x-1.5">
               <button
                 type="button"
-                className="px-3 py-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition flex items-center gap-1 active:scale-95"
+                className="px-2 py-1 text-[11px] font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition flex items-center gap-1 active:scale-95"
                 onclick={`
                   if (navigator.share) {
                     navigator.share({
@@ -441,7 +429,7 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
                   }
                 `}
               >
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                 </svg>
                 <span>Bagikan</span>
@@ -454,10 +442,10 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
               >
                 <button
                   type="submit"
-                  className="p-1.5 text-rose-500 hover:bg-rose-50 rounded-lg transition"
+                  className="p-1 text-rose-500 hover:bg-rose-50 rounded-md transition"
                   title="Hapus"
                 >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </button>
@@ -466,15 +454,15 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
           </div>
         </header>
 
-        {/* Article Reading Content (Mobile-optimized typography) */}
-        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-slate-200/90 shadow-xs">
-          <div className="text-[16px] sm:text-[17px] text-slate-700 leading-[1.75] space-y-4">
+        {/* Article Reading Content */}
+        <div className="bg-white rounded-xl p-4 sm:p-6 border border-slate-200/90 shadow-xs">
+          <div className="text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
             {paragraphs.map((p, idx) => {
               const trimmed = p.trim();
 
               if (trimmed.startsWith('### ')) {
                 return (
-                  <h3 key={idx} className="text-lg sm:text-xl font-black text-slate-900 pt-4 pb-1 border-b border-slate-100">
+                  <h3 key={idx} className="text-xs sm:text-sm font-bold text-slate-900 pt-3 pb-1 border-b border-slate-100">
                     {trimmed.replace(/^###\s+/, '')}
                   </h3>
                 );
@@ -483,11 +471,11 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
               if (trimmed.startsWith('- ')) {
                 const lines = trimmed.split('\n');
                 return (
-                  <ul key={idx} className="space-y-2 my-3 pl-0">
+                  <ul key={idx} className="space-y-1 my-2 pl-0">
                     {lines.map((l, liIdx) => (
-                      <li key={liIdx} className="flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-2 shrink-0"></span>
-                        <span className="text-sm sm:text-base">{l.replace(/^[-\*]\s+/, '')}</span>
+                      <li key={liIdx} className="flex items-start gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-indigo-600 mt-1.5 shrink-0"></span>
+                        <span>{l.replace(/^[-\*]\s+/, '')}</span>
                       </li>
                     ))}
                   </ul>
@@ -497,17 +485,17 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
               if (/^\d+\.\s/.test(trimmed)) {
                 const lines = trimmed.split('\n');
                 return (
-                  <ol key={idx} className="space-y-2 my-3 pl-0">
+                  <ol key={idx} className="space-y-1 my-2 pl-0">
                     {lines.map((l, liIdx) => {
                       const match = l.match(/^(\d+)\.\s*(.*)/);
                       const num = match ? match[1] : String(liIdx + 1);
                       const text = match ? match[2] : l;
                       return (
-                        <li key={liIdx} className="flex items-start gap-2.5">
-                          <span className="w-5 h-5 rounded-md bg-indigo-50 text-indigo-700 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">
+                        <li key={liIdx} className="flex items-start gap-1.5">
+                          <span className="w-4 h-4 rounded bg-indigo-50 text-indigo-700 font-bold text-[9px] flex items-center justify-center shrink-0 mt-0.5">
                             {num}
                           </span>
-                          <span className="text-sm sm:text-base">{text}</span>
+                          <span>{text}</span>
                         </li>
                       );
                     })}
@@ -520,34 +508,34 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
           </div>
 
           {/* Author Box */}
-          <div className="mt-8 p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white font-black flex items-center justify-center text-sm shrink-0">
+          <div className="mt-6 p-3 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center gap-2.5">
+            <div className="w-6 h-6 rounded-md bg-indigo-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0">
               {article.author.charAt(0)}
             </div>
             <div>
               <span className="font-bold text-xs text-slate-900 block">{article.author}</span>
-              <span className="text-[11px] text-slate-500 block">Full-stack Programmer & Sistem Analis</span>
+              <span className="text-[10px] text-slate-500 block">IT & Sistem Analis</span>
             </div>
           </div>
         </div>
 
-        {/* Floating Quick Action: Share to WhatsApp Button on mobile */}
-        <div className="mt-5 flex gap-2.5">
+        {/* Floating Quick Action */}
+        <div className="mt-3 flex gap-2">
           <a
             href="/"
-            className="flex-1 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 text-center shadow-xs active:scale-95 transition"
+            className="flex-1 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 text-center active:scale-95 transition"
           >
             ← Kembali
           </a>
           <button
             type="button"
-            className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition"
+            className="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition"
             onclick={`
               const waUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(${JSON.stringify(article.title)} + '\\n' + window.location.href);
               window.open(waUrl, '_blank');
             `}
           >
-            <span>Kirim ke WhatsApp 💬</span>
+            <span>Kirim WhatsApp</span>
           </button>
         </div>
       </div>
@@ -558,31 +546,31 @@ export const ArticleDetail: FC<{ article: Article }> = ({ article }) => {
 export const CreateArticleForm: FC<{ categories: string[] }> = ({ categories }) => {
   return (
     <Layout title="Tulis Artikel Baru — KabarTekno" activeTab="new">
-      <div className="max-w-xl mx-auto bg-white p-5 sm:p-8 rounded-2xl border border-slate-200/90 shadow-xs">
-        <div className="mb-4">
-          <h1 className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">
+      <div className="max-w-xl mx-auto bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-xs">
+        <div className="mb-3">
+          <h1 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
             Tulis Artikel Baru
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Tulis catatan sistem, tips teknis, atau pengalaman di lapangan.
+          <p className="text-[11px] text-slate-400">
+            Catatan lapangan, analisis sistem, atau tips teknis.
           </p>
         </div>
 
-        <form method="POST" action="/articles" className="space-y-4">
+        <form method="POST" action="/articles" className="space-y-3">
           <div>
-            <label className="block font-bold text-slate-700 mb-1 text-xs sm:text-sm">Judul Artikel *</label>
+            <label className="block font-semibold text-slate-700 mb-1 text-xs">Judul Artikel *</label>
             <input
               type="text"
               name="title"
               required
-              placeholder="Contoh: Mengatasi Masalah Switch Overheat..."
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+              placeholder="Judul artikel..."
+              className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:bg-white transition"
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div>
-              <label className="block font-bold text-slate-700 mb-1 text-xs sm:text-sm">Kategori *</label>
+              <label className="block font-semibold text-slate-700 mb-1 text-xs">Kategori *</label>
               <input
                 type="text"
                 name="category"
@@ -590,7 +578,7 @@ export const CreateArticleForm: FC<{ categories: string[] }> = ({ categories }) 
                 defaultValue="Hospital IT"
                 placeholder="Hospital IT / Pemrograman"
                 list="category-options"
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:bg-white transition"
               />
               <datalist id="category-options">
                 {categories.filter(c => c !== 'Semua').map(c => (
@@ -600,41 +588,41 @@ export const CreateArticleForm: FC<{ categories: string[] }> = ({ categories }) 
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1 text-xs sm:text-sm">Nama Penulis</label>
+              <label className="block font-semibold text-slate-700 mb-1 text-xs">Nama Penulis</label>
               <input
                 type="text"
                 name="author"
                 defaultValue="Antok"
                 placeholder="Nama Anda"
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:bg-white transition"
               />
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block font-bold text-slate-700 text-xs sm:text-sm">Isi Konten *</label>
-              <span className="text-[10px] text-slate-400">### untuk judul sub-bagian</span>
+              <label className="block font-semibold text-slate-700 text-xs">Isi Konten *</label>
+              <span className="text-[9px] text-slate-400">### untuk sub-judul</span>
             </div>
             <textarea
               name="content"
               required
-              rows={9}
+              rows={8}
               placeholder="Tuliskan isi artikel Anda di sini..."
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition leading-relaxed font-sans"
+              className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:bg-white transition leading-relaxed font-sans"
             ></textarea>
           </div>
 
-          <div className="pt-2 flex items-center space-x-2">
+          <div className="pt-1.5 flex items-center space-x-2">
             <a
               href="/"
-              className="flex-1 py-3 text-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition"
+              className="flex-1 py-2 text-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-xs transition"
             >
               Batal
             </a>
             <button
               type="submit"
-              className="flex-2 py-3 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs sm:text-sm rounded-xl shadow-sm transition"
+              className="flex-2 py-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs rounded-lg shadow-xs transition"
             >
               Terbitkan Sekarang 🚀
             </button>
